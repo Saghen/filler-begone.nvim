@@ -1,0 +1,61 @@
+*neverflow*    Prevent scrolling past the bottom of buffers
+
+==============================================================================
+CONTENTS                                                   *neverflow-contents*
+
+  1. Introduction                                      |neverflow-introduction|
+  2. Installation                                      |neverflow-installation|
+  3. Configuration                                    |neverflow-configuration|
+
+==============================================================================
+1. INTRODUCTION                                        *neverflow-introduction*
+
+neverflow.nvim prevents neovim from scrolling past the bottom of the buffer
+and showing unnecessary |filler-lines|. The plugin initializes itself
+automatically, just add it to your package manager.
+
+The name comes from "never overflow" -> "neverflow".
+
+    "i hate the filler lines with a passion" - justinmk
+
+Special thanks to:
+  • zeertzjq (https://github.com/zeertzjq)
+  • justinmk (https://github.com/justinmk)
+  • seandewar (https://github.com/seandewar)
+  • echasnovski (https://github.com/echasnovski)
+
+==============================================================================
+2. INSTALLATION                                        *neverflow-installation*
+
+lazy.nvim ~
+>lua
+    { 'saghen/neverflow.nvim' }
+<
+
+vim.pack ~
+>lua
+    vim.pack.add({ 'https://github.com/saghen/neverflow.nvim' })
+<
+
+mini.deps ~
+>lua
+    MiniDeps.add({ source = 'saghen/neverflow.nvim' })
+<
+
+==============================================================================
+3. CONFIGURATION                                      *neverflow-configuration*
+
+The plugin can be disabled globally or per-buffer:
+
+Disable globally ~
+>lua
+    vim.g.neverflow = false
+<
+
+Disable per-buffer ~
+>lua
+    vim.b.neverflow = false
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
