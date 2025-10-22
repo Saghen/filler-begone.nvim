@@ -1,11 +1,11 @@
 --- Prevents neovim from scrolling past the bottom of the buffer and showing unnecessary `:h filler-lines`
 --- @param win number
-local function neverflow(win)
+local function filler_begone(win)
   assert(type(win) == 'number', 'window is not a number: ' .. win)
   assert(vim.api.nvim_win_is_valid(win), 'invalid window: ' .. win)
 
   local buf = vim.api.nvim_win_get_buf(win)
-  if vim.b[buf].neverflow == false then return end
+  if vim.b[buf].filler_begone == false then return end
 
   local line_count = vim.api.nvim_buf_line_count(buf)
 
@@ -60,4 +60,4 @@ local function neverflow(win)
   end
 end
 
-return neverflow
+return filler_begone

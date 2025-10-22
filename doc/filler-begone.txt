@@ -1,0 +1,57 @@
+*filler-begone*    Prevent scrolling past the bottom of buffers
+
+==============================================================================
+CONTENTS                                                   *filler-begone-contents*
+
+  1. Introduction                                      |filler-begone-introduction|
+  2. Installation                                      |filler-begone-installation|
+  3. Configuration                                    |filler-begone-configuration|
+
+==============================================================================
+1. INTRODUCTION                                        *filler-begone-introduction*
+
+filler-begone.nvim prevents neovim from scrolling past the bottom of the buffer
+and showing unnecessary |filler-lines|. The plugin initializes itself
+automatically, just add it to your package manager.
+
+Special thanks to:
+  • zeertzjq (https://github.com/zeertzjq)
+  • justinmk (https://github.com/justinmk)
+  • seandewar (https://github.com/seandewar)
+  • echasnovski (https://github.com/echasnovski)
+
+==============================================================================
+2. INSTALLATION                                        *filler-begone-installation*
+
+lazy.nvim ~
+>lua
+    { 'saghen/filler-begone.nvim' }
+<
+
+vim.pack ~
+>lua
+    vim.pack.add({ 'https://github.com/saghen/filler-begone.nvim' })
+<
+
+mini.deps ~
+>lua
+    MiniDeps.add({ source = 'saghen/filler-begone.nvim' })
+<
+
+==============================================================================
+3. CONFIGURATION                                      *filler-begone-configuration*
+
+The plugin can be disabled globally or per-buffer:
+
+Disable globally ~
+>lua
+    vim.g.filler_begone = false
+<
+
+Disable per-buffer ~
+>lua
+    vim.b.filler_begone = false
+<
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
