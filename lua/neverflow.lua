@@ -26,6 +26,13 @@ local function neverflow(win)
       local accumulated_line_height = 0
       local target_line = line_count - 1
       while target_line > 0 do
+        -- ignore if line is folded
+        local fold_closed_line = vim.fn.foldclosed(target_line)
+        if fold_closed_line ~= -1 and fold_closed_line ~= target_line then
+          target_line = target_line - 1
+          goto continue
+        end
+
         local line_height = vim.api.nvim_win_text_height(win, {
           start_row = target_line,
           end_row = target_line,
@@ -37,6 +44,7 @@ local function neverflow(win)
         if accumulated_line_height >= win_height then break end
 
         target_line = target_line - 1
+        ::continue::
       end
 
       -- scroll to the target line
