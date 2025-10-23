@@ -30,21 +30,21 @@ local function filler_begone(win)
         local fold_closed_line = vim.fn.foldclosed(target_line)
         if fold_closed_line ~= -1 and fold_closed_line ~= target_line then
           target_line = target_line - 1
-          goto continue
+
+        -- otherwise, count the visible height of the line
+        else
+          local line_height = vim.api.nvim_win_text_height(win, {
+            start_row = target_line,
+            end_row = target_line,
+          }).all
+          accumulated_line_height = accumulated_line_height + line_height
+
+          -- current line would go beyond win height, go back down one line
+          if accumulated_line_height > win_height then target_line = target_line + 1 end
+          if accumulated_line_height >= win_height then break end
+
+          target_line = target_line - 1
         end
-
-        local line_height = vim.api.nvim_win_text_height(win, {
-          start_row = target_line,
-          end_row = target_line,
-        }).all
-        accumulated_line_height = accumulated_line_height + line_height
-
-        -- current line would go beyond win height, go back down one line
-        if accumulated_line_height > win_height then target_line = target_line + 1 end
-        if accumulated_line_height >= win_height then break end
-
-        target_line = target_line - 1
-        ::continue::
       end
 
       -- scroll to the target line
